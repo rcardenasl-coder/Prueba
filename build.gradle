@@ -1,0 +1,59 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.3'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id 'org.liquibase.gradle' version '2.2.2'
+}
+
+group = 'com.pruebatecnica'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+	liquibaseRuntime {
+		extendsFrom implementation
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-webflux')
+	implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
+	implementation('org.postgresql:r2dbc-postgresql:1.0.7.RELEASE')
+	implementation("org.springframework.boot:spring-boot-starter-validation")
+	implementation 'org.liquibase:liquibase-core:4.31.1'
+	implementation 'org.postgresql:postgresql:42.7.5'
+	implementation 'org.mapstruct:mapstruct:1.6.3'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+liquibase {
+	activities {
+		main {
+			changeLogFile 'src/main/resources/db/changelog/db.changelog-master.xml'
+			url 'jdbc:postgresql://localhost:5432/franchise_db'
+			username 'postgres'
+			password '123'
+		}
+	}
+	runList = 'main'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
