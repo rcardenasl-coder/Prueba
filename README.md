@@ -25,6 +25,7 @@ Una API REST reactiva desarrollada con **Spring Boot WebFlux** y **PostgreSQL** 
 CREATE DATABASE franchise_db;
 
 -- Tabla franchise
+
 CREATE TABLE franchise (
 
     id BIGSERIAL PRIMARY KEY NOT NULL,
@@ -33,25 +34,44 @@ CREATE TABLE franchise (
     
 );
 
+
 -- Tabla branch con FK a franchise
+
 CREATE TABLE branch (
+
     id BIGSERIAL PRIMARY KEY NOT NULL,
+    
     name VARCHAR(255) NOT NULL,
+    
     franchise_id BIGINT NOT NULL,
+    
     CONSTRAINT fk_branch_franchise FOREIGN KEY (franchise_id) REFERENCES franchise (id) ON DELETE CASCADE
+    
 );
 
 -- Tabla product con FK a branch
+
 CREATE TABLE product (
+
     id BIGSERIAL PRIMARY KEY NOT NULL,
+    
     name VARCHAR(255) NOT NULL,
+    
     stock INT NOT NULL,
+    
     branch_id BIGINT,
+    
     CONSTRAINT fk_product_branch FOREIGN KEY (branch_id) REFERENCES branch (id) ON DELETE CASCADE
+    
 );
 
 application.properties:
+
 spring.datasource.url=jdbc:postgresql://localhost:5432/franchise_db
+
 spring.datasource.username=tu_usuario
+
 spring.datasource.password=tu_contraseña
+
 spring.jpa.hibernate.ddl-auto=update
+
