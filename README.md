@@ -1,7 +1,7 @@
 Una API REST reactiva para gestionar franquicias, sucursales y productos, desarrollada con Spring Boot WebFlux y PostgreSQL. Utiliza una arquitectura hexagonal para garantizar modularidad y mantenibilidad.\n
 Permite operaciones como crear franquicias, sucursales, productos, y consultar el producto con mayor stock por sucursal para una franquicia específica.\n
 
-🚀 Características\n
+Características\n
 Reactiva: Construida con Spring WebFlux y Project Reactor para un manejo asíncrono y no bloqueante.\n
 Arquitectura Hexagonal: Diseño modular con separación clara entre lógica de negocio, persistencia y presentación.\n
 Base de Datos: PostgreSQL con soporte para relaciones entre franquicias, sucursales y productos.\n
@@ -9,12 +9,12 @@ Mapeo Automático: Usa MapStruct para transformar entidades a DTOs.\n
 Endpoints Principales:\n
 Consultar productos con mayor stock por sucursal.\n
 Gestionar franquicias, sucursales y productos (CRUD).\n
-📋 Requisitos previos\n
+Requisitos previos\n
 Java 21\n
 PostgreSQL\n
 Git\n
 Postman o un cliente HTTP similar\n
-🛠️ Instalación y configuración\n
+🛠Instalación y configuración\n
 1. Clonar el repositorio\n
 
 Conéctate a PostgreSQL (con psql o pgAdmin) y Crea la base de datos:\n
