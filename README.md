@@ -26,8 +26,11 @@ CREATE DATABASE franchise_db;
 
 -- Tabla franchise
 CREATE TABLE franchise (
+
     id BIGSERIAL PRIMARY KEY NOT NULL,
+    
     name VARCHAR(255) NOT NULL
+    
 );
 
 -- Tabla branch con FK a franchise
